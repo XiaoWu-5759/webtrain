@@ -1,4 +1,4 @@
-"""mysite URL Configuration
+"""cloudms URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -16,11 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from helloapp import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.hello),
-    # 这样可以实现，主与副的路径吗  可以
-    path('show/', include('showapp.urls')),
+    path('msggate/', include('msgapp.urls'))
 ]
