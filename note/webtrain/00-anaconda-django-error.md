@@ -20,3 +20,18 @@ sqlite3
 
 [【出错笔记】Anaconda Sqlite3 ImportError: DLL load failed 问题解决](<https://blog.csdn.net/frostime/article/details/86762858>)
 
+
+
+### pycharm配置django运行环境
+
+报错：
+
+> django.core.exceptions.ImproperlyConfigured: Requested setting DEBUG,
+
+解决方案：
+
+![sp190618_100734](./images/sp190618_100734.png)
+
+设置manage.py和settings.py 文件到配置文件中
+
+DJANGO_SETTINGS_MODULE

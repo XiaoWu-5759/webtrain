@@ -1,8 +1,13 @@
+import os
 from datetime import datetime
 
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.template import Context
+from django.template.backends.django import Template
+
 
 def msgproc(request):
     datalist = []
@@ -30,3 +35,26 @@ def msgproc(request):
                     if cnt >= 10:
                         break
     return render(request,"cloudms/MsgSingleWeb.html", {"data": datalist})
+
+def homeproc(request):
+    response = HttpResponse()
+    response.write("<h1>这是首页，具体功能请访问<a href='./msggate'>这里</a></h1>")
+    response.write("<h1>这是第二行</h1>")
+    return response
+
+def homeproc2(request):
+    # 获取项目的主路径
+    cwd = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # 读取二进制流
+    response = FileResponse(open(cwd + "/templates/bear.jpg", "rb"))
+    # 设置字典类型
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="bear.jpg"'
+    return response
+
+def pgproc(request):
+    # 这里有点问题 是需要注册模板地址吗
+    template = Template("<h1>这个程序的名字是{{ name }}</h1>")
+    print(template)
+    context = Context({"name": "耶耶耶"})
+    return HttpResponse(template.render(context))
